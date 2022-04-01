@@ -1,0 +1,40 @@
+<!-- --- -->
+<!-- layout: default -->
+<!-- --- -->
+
+<link rel="stylesheet" href="{{ site.github.url }}/reveal.js/dist/reveal.css" />
+<link
+  rel="stylesheet"
+  href="{{ site.github.url }}/reveal.js/dist/theme/black.css"
+/>
+
+<div class="reveal">
+  <div class="slides">{{ content }}</div>
+</div>
+
+<script src="{{ site.github.url }}/reveal.js/dist/reveal.js"></script>
+<script src="{{ site.github.url }}/reveal.js/plugin/zoom/zoom.js"></script>
+<script src="{{ site.github.url }}/reveal.js/plugin/notes/notes.js"></script>
+<script src="{{ site.github.url }}/reveal.js/plugin/search/search.js"></script>
+<script src="{{ site.github.url }}/reveal.js/plugin/markdown/markdown.js"></script>
+<script src="{{ site.github.url }}/reveal.js/plugin/highlight/highlight.js"></script>
+
+<!-- reveal.js init -->
+<script>
+  // Full list of configuration options available here:
+  // https://revealjs.com/config/
+  Reveal.initialize({
+    {% if site.reveal %}
+    {% for attr in site.reveal %}{{attr[0]}}: {% unless {attr[1]} == false or {attr[1]} == true %}'{{attr[1]}}',{% else %}{{attr[1]}},{% endunless %}
+    {% endfor %}
+    {% endif %}
+    plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight ]
+  });
+
+  {% if site.slideNumber.format and site.slideNumber.format != "none" %}
+  // Shows the slide number using default formatting
+  Reveal.configure({ slideNumber: true });
+  Reveal.configure({ slideNumber: '{{ site.slideNumber.format }}' });
+  {% endif %}
+</script>
+<!-- End reveal.js init -->
