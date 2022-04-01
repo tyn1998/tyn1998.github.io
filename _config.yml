@@ -1,6 +1,6 @@
 # Site settings
 title:          tyn1998
-description:    "Minimal Jekyll theme for storytellers"
+description:    "tyn1998's website."
 # baseurl:        "/tale"
 url:            "https://tyn1998.github.io"
 
@@ -12,6 +12,13 @@ author:
   name:         tyn1998
   url:          https://tyn1998.github.io
   email:        tangyenan@gmail.com
+
+# Collections
+collections:
+  projects:
+    output: true
+  slides:
+    output: true
 
 # Build settings
 markdown:       kramdown
