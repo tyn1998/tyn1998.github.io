@@ -1,0 +1,210 @@
+---
+layout: slide
+title: X-lab论文分享：基于贡献分配的开源软件核心开发者
+---
+
+<!-- logo -->
+<style>
+  body:after {
+    content: url(/assets/xlab/logo-h.png);
+    transform: scale(0.6);
+    position: fixed;
+    left: 0%;
+    top: 0%;
+  }
+</style>
+
+<!-- 为列布局准备的样式 -->
+<style>
+  .horizontal {
+    display: flex;
+    flex-direction: row;
+  }
+  .vertical {
+    display: flex;
+    flex-direction: column;
+  }
+  .flex1 {
+    flex: 1;
+  }
+  .flex2 {
+    flex: 2;
+  }
+</style>
+
+<!-- 小字体 -->
+<style>
+  .small {
+    font-size: 0.7em !important;
+  }
+</style>
+
+<!-- 封面 -->
+<section data-background-image="/assets/xlab/bg.jpeg">
+  <h1>基于贡献分配的开源软件核心开发者</h1>
+  <p>X-lab 周一论文分享，唐烨男</p>
+</section>
+
+<!-- 目录 -->
+<section data-background-image="/assets/xlab/bg.jpeg">
+  <h2>目录</h2>
+  <ul>
+    <li>为什么分享这篇论文</li>
+    <li>寻找核心开发者的3个类型阶段</li>
+    <li>实验框架</li>
+    <li>数据集介绍</li>
+    <li>核心文件组</li>
+    <li>贡献分配算法</li>
+    <li>实验结果</li>
+    <li>支持向量机分类预测</li>
+    <li>不足之处</li>
+    <li>收获与启发</li>
+  </ul>
+</section>
+
+<!-- 为什么分享这篇论文 -->
+<section data-background-image="/assets/xlab/bg.jpeg">
+  <h2>为什么分享这篇论文</h2>
+  <div class="horizontal">
+    <div class="flex1">
+      <h4>1</h4>
+      <p>访谈问卷类需要深厚的底蕴</p>
+      <p>暂时难以驾驭</p>
+      <p>客观计算类的更符合个人兴趣</p>
+    </div>
+    <div class="flex1">
+      <h4>2</h4>
+      <p>希望能运用到所有仓库</p>
+      <p>每个Repo都有机会看到自己的数据</p>
+    </div>
+    <div class="flex1">
+      <h4>3</h4>
+      <p>也许可以从更微观的角度来衡量贡献者</p>
+      <p>基于GitHub日志 → 基于.git目录</p>
+    </div>
+  </div>
+</section>
+
+<!-- 寻找核心开发者的3个类型阶段 -->
+<section data-background-image="/assets/xlab/bg.jpeg">
+  <h2>寻找核心开发者的3个类型阶段</h2>
+  <div class="horizontal">
+    <div class="flex1">
+      <h4>1<br />统计计数阶段</h4>
+      <li>编译次数</li>
+      <li>代码行数</li>
+      <li>邮件数目</li>
+    </div>
+    <div class="flex1">
+      <h4>2<br />网络分析阶段</h4>
+      <li>建立开发者网络</li>
+      <p>e.g.实验室的贡献者/仓库异构网络？</p>
+    </div>
+    <div class="flex1">
+      <h4>3<br />定量分析阶段</h4>
+      <li>个人访谈</li>
+      <li>问卷调查</li>
+      <li>经验汇总</li>
+    </div>
+  </div>
+</section>
+
+<!-- 实验框架 -->
+<section data-background-image="/assets/xlab/bg.jpeg">
+  <h2>实验框架</h2>
+  <div class="horizontal">
+    <div class="flex1">
+      <p>9个Apache项目</p>
+      <p>Linux,Python,R</p>
+      <p>核心文件组 → 核心开发者</p>
+      <p>贡献度分配算法</p>
+      <p>...</p>
+    </div>
+    <div class="flex2">
+      <img src="实验框架.png" alt="实验框架.png" />
+    </div>
+  </div>
+</section>
+
+<!-- 数据集 -->
+<section data-background-image="/assets/xlab/bg.jpeg">
+  <h2>数据集</h2>
+  <div>
+    <div class="horizontal">
+      <div class="flex1">
+        <p>9个Apache项目</p>
+        <p>全是Java项目</p>
+        <p>两部分数据信息</p>
+      </div>
+      <div class="flex2">
+        <img src="数据集表.jpg" alt="数据集表.jpg" />
+      </div>
+    </div>
+  </div>
+  <div>
+    <div class="horizontal">
+      <div class="flex1">
+        <h4>1 <br/ > 开发者开发记录</h4>
+        <div class="small">
+          总编译次数<br />
+          具体操作文件<br />
+          总的代码行数<br />
+          与其他开发者之间邮件记录<br />
+        </div>
+      </div>
+      <div class="flex1">
+        <h4>2 <br/ > 源文件之间相互调用记录</h4>
+        <div class="vertical small">
+          <div class="flex1">相互调用情况</div>
+          <div class="flex1">调用次数</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 核心文件组 -->
+<section data-background-image="/assets/xlab/bg.jpeg">
+  <h2>核心文件组</h2>
+  <div class="horizontal small``">
+    <div class="flex1">
+      <h4>1<br />理论依据</h4>
+      <div class="vertical" style="align-items: flex-start;">
+        <li class="flex1">文献科学中的共被引用机制</li>
+        <li class="flex1">二八法则</li>
+        <li class="flex1">核心的文件 → 核心的开发者</li>
+      </div>
+    </div>
+    <div class="flex1">
+      <h4>2<br />哪些算核心文件</h4>
+      <div class="vertical" style="align-items: flex-start;">
+        <li class="flex1">占引用次数和前90%的文件</li>
+        <li class="flex1">
+          后期加入、被引用次数不多但在加入后短期被频繁编译的文件
+        </li>
+      </div>
+    </div>
+    <div class="flex1">
+      <h4>3<br />实现困难</h4>
+      <div class="vertical" style="align-items: flex-start;">
+        <li class="flex1">不同语言有不同的引用机制</li>
+        <li class="flex1">不在引用网络但也核心的文件</li>
+        <li class="flex1">文件若存在更名/换路径的情形</li>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 贡献度分配算法 -->
+<section data-background-image="/assets/xlab/bg.jpeg">
+  <h2>贡献度分配算法</h2>
+  <div class="horizontal">
+    <div class="flex1">
+      <p>还没写呢</p>
+      <p>...</p>
+    </div>
+    <div class="flex2">
+      <img src="贡献度分配算法.png" alt="贡献度分配算法.png" />
+    </div>
+  </div>
+</section>
