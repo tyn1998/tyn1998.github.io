@@ -1,6 +1,7 @@
 ---
 layout: post
 title: Light -> Cloud -> Heavy
+categories: [Tooling]
 ---
 
 <a name="MBRET"></a>
