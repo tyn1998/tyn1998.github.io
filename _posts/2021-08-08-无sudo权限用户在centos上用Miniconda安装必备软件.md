@@ -1,5 +1,6 @@
 ---
 layout: post
+categories: [Tooling]
 ---
 
 <a name="xkqxx"></a>
@@ -43,7 +44,6 @@ Good luck！
 ### 安装 Miniconda
 
 1. 脚本自动安装 Miniconda 到`~/conda`。
-
 ```bash
 curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh > Miniconda.sh
 bash Miniconda.sh -b -p ~/conda
@@ -52,7 +52,6 @@ bash Miniconda.sh -b -p ~/conda
 ```
 
 2. 添加`conda/bin`目录到 PATH。
-
 ```bash
 # 将下面两行添加到你使用的shell的配置文件中（Fish用户使用set -x）
 CONDABIN_D=$HOME/conda/bin
@@ -68,7 +67,6 @@ export PATH=$CONDABIN_D:$PATH
    ![image.png](https://cdn.nlark.com/yuque/0/2021/png/21625412/1628388284900-93cbc368-65ed-4a7e-9d38-5b243c50065c.png#clientId=ub8b97d14-4903-4&crop=0&crop=0&crop=1&crop=1&from=paste&height=751&id=u4e54a75c&margin=%5Bobject%20Object%5D&name=image.png&originHeight=751&originWidth=1381&originalType=binary&ratio=1&rotation=0&showTitle=false&size=119957&status=done&style=stroke&taskId=uedfd8d36-8380-4f1c-9c06-7a201a5e89f&title=&width=1381)
 
 4. 进入包详情界面可以看到安装指令，复制过来回车。
-
 ```bash
 # fish
 conda install -c conda-forge fish
