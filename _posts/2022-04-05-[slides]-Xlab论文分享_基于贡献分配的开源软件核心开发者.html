@@ -122,7 +122,10 @@ categories: [Papers]
       <p>...</p>
     </div>
     <div class="flex2">
-      <img src="/assets/posts/2022-04-05-Xlab论文分享_基于贡献分配的开源软件核心开发者/实验框架.png" alt="实验框架.png" />
+      <img
+        src="/assets/posts/2022-04-05-Xlab论文分享_基于贡献分配的开源软件核心开发者/实验框架.png"
+        alt="实验框架.png"
+      />
     </div>
   </div>
 </section>
@@ -138,7 +141,10 @@ categories: [Papers]
         <p>两部分数据信息</p>
       </div>
       <div class="flex2">
-        <img src="/assets/posts/2022-04-05-Xlab论文分享_基于贡献分配的开源软件核心开发者/数据集表.jpg" alt="数据集表.jpg" />
+        <img
+          src="/assets/posts/2022-04-05-Xlab论文分享_基于贡献分配的开源软件核心开发者/数据集表.jpg"
+          alt="数据集表.jpg"
+        />
       </div>
     </div>
   </div>
@@ -170,7 +176,7 @@ categories: [Papers]
   <div class="horizontal small``">
     <div class="flex1">
       <h4>1<br />理论依据</h4>
-      <div class="vertical" style="align-items: flex-start;">
+      <div class="vertical" style="align-items: flex-start">
         <li class="flex1">文献科学中的共被引用机制</li>
         <li class="flex1">二八法则</li>
         <li class="flex1">核心的文件 → 核心的开发者</li>
@@ -178,7 +184,7 @@ categories: [Papers]
     </div>
     <div class="flex1">
       <h4>2<br />哪些算核心文件</h4>
-      <div class="vertical" style="align-items: flex-start;">
+      <div class="vertical" style="align-items: flex-start">
         <li class="flex1">占引用次数和前90%的文件</li>
         <li class="flex1">
           后期加入、被引用次数不多但在加入后短期被频繁编译的文件
@@ -187,7 +193,7 @@ categories: [Papers]
     </div>
     <div class="flex1">
       <h4>3<br />实现困难</h4>
-      <div class="vertical" style="align-items: flex-start;">
+      <div class="vertical" style="align-items: flex-start">
         <li class="flex1">不同语言有不同的引用机制</li>
         <li class="flex1">不在引用网络但也核心的文件</li>
         <li class="flex1">文件若存在更名/换路径的情形</li>
@@ -199,13 +205,207 @@ categories: [Papers]
 <!-- 贡献度分配算法 -->
 <section data-background-image="/assets/xlab/bg.jpeg">
   <h2>贡献度分配算法</h2>
-  <div class="horizontal">
-    <div class="flex1">
-      <p>还没写呢</p>
-      <p>...</p>
+  <!-- 输入输出 -->
+  <section>
+    <div class="horizontal">
+      <div class="flex1">
+        <h4>input</h4>
+        <p>核心文件组</p>
+        <p>文件关联网络</p>
+        <p>每个文件的作者</p>
+        <h4>output</h4>
+        <p>1个m维行向量</p>
+        <p class="small">(贡献度份额向量c)</p>
+      </div>
+      <div class="flex2">
+        <img
+          src="/assets/posts/2022-04-05-Xlab论文分享_基于贡献分配的开源软件核心开发者/贡献度分配算法.png"
+          alt="贡献度分配算法.png"
+        />
+      </div>
     </div>
-    <div class="flex2">
-      <img src="/assets/posts/2022-04-05-Xlab论文分享_基于贡献分配的开源软件核心开发者/贡献度分配算法.png" alt="贡献度分配算法.png" />
+  </section>
+  <!-- 算法步骤 -->
+  <section>
+    <div class="horizontal" style="align-items: center">
+      <div class="flex1">
+        <h4>步骤</h4>
+        <pre>
+          <code data-trim data-noescape>
+            for p in 核心文件组:
+              建立p的3层关联网络
+              求p的贡献度份额向量c
+            
+            所有开发者对核心文件组
+            的贡献度份额向量 
+            = 所有c的平均值
+
+            选取贡献度总和的前80%
+            作为核心开发者
+          </code>
+        </pre>
+      </div>
+      <div class="flex2">
+        <img
+          src="/assets/posts/2022-04-05-Xlab论文分享_基于贡献分配的开源软件核心开发者/贡献度分配算法.png"
+          alt="贡献度分配算法.png"
+        />
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- p的3层关联网络 -->
+  <section>
+    <div class="horizontal" style="align-items: center">
+      <div class="flex1">
+        <h4>p的3层关联网络</h4>
+        <p>第1层</p>
+        <p class="small">p本身（图中P0）</p>
+        <p>第2层</p>
+        <p class="small">调用p的所有文件d</p>
+        <p>第3层</p>
+        <p class="small">所有d调用的非核心文件</p>
+      </div>
+      <div class="flex2">
+        <img
+          src="/assets/posts/2022-04-05-Xlab论文分享_基于贡献分配的开源软件核心开发者/贡献度分配算法.png"
+          alt="贡献度分配算法.png"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- 求p的c -->
+  <section>
+    <div class="horizontal" style="align-items: center">
+      <div class="flex1">
+        <h4>求p的c</h4>
+        <p>向量集合s</p>
+        <p class="small">第1、3层中各文件被所有d调用的次数</p>
+        <p>分配矩阵T</p>
+        <p class="small">每行代表p的其中一个作者在第1、3层各文件中的人头占比</p>
+        <p>c = Ts</p>
+      </div>
+      <div class="flex2">
+        <img
+          src="/assets/posts/2022-04-05-Xlab论文分享_基于贡献分配的开源软件核心开发者/贡献度分配算法.png"
+          alt="贡献度分配算法.png"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- 得出核心开发者 -->
+  <section>
+    <div class="horizontal" style="align-items: center">
+      <div class="flex1">
+        <h4>求所有c的平均值</h4>
+        <p class="small">Q: 每个c的长度不相等，怎么办？</p>
+        <p class="small">
+          A:
+          假设每个核心文件的作者集合是所有的开发者，这样可以统一长度且不影响结果
+        </p>
+        <h4>核心开发者</h4>
+        <p class="small">c中贡献度总和的前80%覆盖的开发者为核心开发者</p>
+      </div>
+      <div class="flex2">
+        <img
+          src="/assets/posts/2022-04-05-Xlab论文分享_基于贡献分配的开源软件核心开发者/贡献度分配算法.png"
+          alt="贡献度分配算法.png"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- 修正因子 -->
+  <section>
+    <h4>全局影响因子$\lambda$</h4>
+    <p>仅仅按人头比来计算贡献度易造成偏差</p>
+    <p>故引入全局影响因子$\lambda$</p>
+    <p>${c_i}^{'} = {c_i}{\lambda_i}$</p>
+    <p>${\lambda_i} = \frac{I_i}{N_i}$</p>
+    <p class="small">
+      其中，$I_i$是开发者$i$编辑过的所有文件在整个项目中被调用的次数，$N_i$是开发者$i$在整个项目中编辑过的文件数
+    </p>
+  </section>
+</section>
+
+<!-- 实验结果 -->
+<section>
+  <h2>实验结果</h2>
+  <img
+    src="/assets/posts/2022-04-05-Xlab论文分享_基于贡献分配的开源软件核心开发者/实验结果.png"
+    alt="贡献度分配算法.png"
+  />
+  <p>
+    从实验结果可以看出,与传统分类方案相比,基于文件贡献的分类法在总体上有着更高的真实名单相似度
+  </p>
+</section>
+
+<!-- 支持向量机分类预测 -->
+<section>
+  <h2>支持向量机分类预测</h2>
+  <p>简单来说，在核心贡献度这一个指标的基础上</p>
+  <p>再综合若干个其他指标，可以让核心开发者的识别更准确</p>
+  <p>所以多维度综合分析效果是更好的</p>
+</section>
+
+<!-- 论文“盲点” -->
+<section>
+  <h2>论文“盲点”</h2>
+  <ul>
+    <li>数据集</li>
+    <ul>
+      <li>对数据集几乎没有介绍</li>
+      <li>文件重命名和路径变化如何处理？</li>
+      <li>文件的共同作者如何确定？</li>
+    </ul>
+    <li>缺乏对文件引用网络构造过程的介绍</li>
+    <ul>
+      <li>不同的语言有不同的引用机制</li>
+      <li>不在引用网络中但也很核心的文件</li>
+    </ul>
+  </ul>
+</section>
+
+<!-- 收获与启发 -->
+<section>
+  <h2>收获与启发</h2>
+  <ul class="small">
+    <li>逛ASF的收获</li>
+    <ul>
+      <li>ASF项目的主战场大多不在GitHub</li>
+      <li>GitHub上的仓库只是个镜像</li>
+      <li>Issue追踪用Jira和Bugzilla</li>
+      <li>因此不适用基于GitHub日志的分析系统</li>
+    </ul>
+    <li>微观角度的补充</li>
+    <ul>
+      <li>基于GitHub日志的方法是宏观的</li>
+      <li>基于文件(Git历史记录)的方法是微观的</li>
+      <li>两者也许能结合起来达到更好的效果</li>
+    </ul>
+    <li>Snoot</li>
+    <ul>
+      <li>与hypercrx是同类项目</li>
+      <li>其订阅收费模式可供参考</li>
+    </ul>
+    <li>用户反馈机制</li>
+    <ul>
+      <li>多套参数多套排名结果，hypercrx进行呈现</li>
+      <li>用户可以打分反馈到模型的参数上</li>
+    </ul>
+  </ul>
+</section>
+
+<!-- Snoot -->
+<section>
+  <h2>Snoot</h2>
+  <iframe data-src="https://www.snoot.io/" data-preload style="width: 100%; height: 13em;"></iframe>
+</section>
+
+<!-- Thanks -->
+<section>
+  <h1>Thanks!</h1>
+  <h1>&#127775 &#127866 &#127881</h1>
 </section>
