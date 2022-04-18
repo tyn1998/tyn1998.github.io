@@ -115,8 +115,8 @@ categories: [Papers]
   <h2>实验框架</h2>
   <div class="horizontal">
     <div class="flex1">
-      <p>9个Apache项目</p>
       <p>Linux,Python,R</p>
+      <p>9个Apache项目</p>
       <p>核心文件组 → 核心开发者</p>
       <p>贡献度分配算法</p>
       <p>...</p>
@@ -173,33 +173,13 @@ categories: [Papers]
 <!-- 核心文件组 -->
 <section data-background-image="/assets/xlab/bg.jpeg">
   <h2>核心文件组</h2>
-  <div class="horizontal small``">
-    <div class="flex1">
-      <h4>1<br />理论依据</h4>
-      <div class="vertical" style="align-items: flex-start">
-        <li class="flex1">文献科学中的共被引用机制</li>
-        <li class="flex1">二八法则</li>
-        <li class="flex1">核心的文件 → 核心的开发者</li>
-      </div>
-    </div>
-    <div class="flex1">
-      <h4>2<br />哪些算核心文件</h4>
-      <div class="vertical" style="align-items: flex-start">
-        <li class="flex1">占引用次数和前90%的文件</li>
-        <li class="flex1">
-          后期加入、被引用次数不多但在加入后短期被频繁编译的文件
-        </li>
-      </div>
-    </div>
-    <div class="flex1">
-      <h4>3<br />实现困难</h4>
-      <div class="vertical" style="align-items: flex-start">
-        <li class="flex1">不同语言有不同的引用机制</li>
-        <li class="flex1">不在引用网络但也核心的文件</li>
-        <li class="flex1">文件若存在更名/换路径的情形</li>
-      </div>
-    </div>
-  </div>
+  <ul>
+    <li>核心的文件 → 核心的开发者</li>
+    <li>占引用次数和前90%的文件</li>
+    <li>
+      后期加入、被引用次数不多但在加入后短期被频繁编译的文件
+    </li>
+  </ul>
 </section>
 
 <!-- 贡献度分配算法 -->
@@ -211,11 +191,11 @@ categories: [Papers]
       <div class="flex1">
         <h4>input</h4>
         <p>核心文件组</p>
-        <p>文件关联网络</p>
-        <p>每个文件的作者</p>
+        <p>文件引用关系</p>
+        <p>文件作者列表</p>
         <h4>output</h4>
-        <p>1个m维行向量</p>
-        <p class="small">(贡献度份额向量c)</p>
+        <p>贡献度份额向量c</p>
+        <p class="small">(1个m维向量)</p>
       </div>
       <div class="flex2">
         <img
@@ -240,8 +220,8 @@ categories: [Papers]
             的贡献度份额向量 
             = 所有c的平均值
 
-            选取贡献度总和的前80%
-            作为核心开发者
+            (选取贡献度总和的前80%
+            作为核心开发者)
           </code>
         </pre>
       </div>
@@ -383,7 +363,7 @@ categories: [Papers]
     <ul>
       <li>基于GitHub日志的方法是宏观的</li>
       <li>基于文件(Git历史记录)的方法是微观的</li>
-      <li>两者也许能结合起来达到更好的效果</li>
+      <li>两者也许能结合起来</li>
     </ul>
     <li>Snoot</li>
     <ul>
